@@ -37,13 +37,11 @@
     // 通知を許可するボタンが押された時のアクション
     const btn = document.getElementById('allow_push_notification');
     btn.addEventListener("click", function () {
-      //let promise = Notification.requestPermission();
-      //console.log("promise: ",promise);
-      if (!("Notification" in window)) {
-        // ブラウザーが通知に対応しているか調べる
+      let promise = Notification.requestPermission();
+      console.log("promise: ", promise);
+      if (!("Notification" in window)) { // ブラウザーが通知に対応しているか調べる
         alert("このブラウザーはデスクトップ通知には対応していません。");
       } else if (Notification.permission !== "denied") {
-
         //if(Notification.permission !== "denied") {
         Notification.requestPermission().then((permission) => {
           const messaging = getMessaging();
