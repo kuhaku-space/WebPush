@@ -42,7 +42,7 @@
       } else if (Notification.permission !== "denied") {
         //if(Notification.permission !== "denied") {
         Notification.requestPermission().then((permission) => {
-          const messaging = getMessaging();
+          const messaging = getMessaging(app);
           console.log(messaging);
           // Add the public key generated from the console here.
           getToken(messaging, { vapidKey: "BJ7potPULcKaMJ5s3p4GgkeQXUS-uqa-UBVtJ-a0oc2L_lcBKbTRR2Ie1JKIHUo3q_5RGQ_qizk57WjksAkpra4" })
