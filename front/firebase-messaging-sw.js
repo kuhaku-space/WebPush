@@ -1,4 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getMessaging } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-messaging.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,17 +18,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-self.addEventListener('push', function (event) {
-    // メッセージを表示する
-    var data = {};
-    if (event.data) {
-        data = event.data.json();
-    }
-    var title = data.notification.title;
-    var message = data.notification.body;
-    event.waitUntil(
-        self.registration.showNotification(title, {
-            'body': message
-        })
-    );
+const messaging = getMessaging(app);
+onMessage(messaging, (payload) => {
+    console.log('Message received. ', payload);
 });
