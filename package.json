@@ -1,0 +1,7 @@
+{
+  "name": "WebPush",
+  "packageManager": "yarn@4.5.1",
+  "devDependencies": {
+    "workbox-webpack-plugin": "^7.1.0"
+  }
+}
