@@ -37,20 +37,17 @@
     // 通知を許可するボタンが押された時のアクション
     const btn = document.getElementById('allow_push_notification');
     btn.addEventListener("click", function () {
-      let promise = Notification.requestPermission();
-      console.log("promise: ", promise);
       if (!("Notification" in window)) { // ブラウザーが通知に対応しているか調べる
         alert("このブラウザーはデスクトップ通知には対応していません。");
       } else if (Notification.permission !== "denied") {
         //if(Notification.permission !== "denied") {
         Notification.requestPermission().then((permission) => {
           const messaging = getMessaging();
+          console.log(messaging);
           // Add the public key generated from the console here.
           getToken(messaging, { vapidKey: "BJ7potPULcKaMJ5s3p4GgkeQXUS-uqa-UBVtJ-a0oc2L_lcBKbTRR2Ie1JKIHUo3q_5RGQ_qizk57WjksAkpra4" })
             .then((token) => {
               if (token) {
-                // tokenを出力
-                //document.getElementById('output').textContent = `${token.Promise}`;
                 console.log("token", token);
                 document.getElementById('output').textContent = token;
               } else {
