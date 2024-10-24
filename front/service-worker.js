@@ -1,7 +1,7 @@
 var CACHE_NAME = 'pwasample';
 var urlsToCache = [
-    '/front/',
-    '/front/index.html'
+    '/',
+    '/index.html'
 ];
 
 self.addEventListener('install', function (event) {
