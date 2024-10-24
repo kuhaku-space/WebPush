@@ -18,48 +18,7 @@
   <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-messaging-compat.js"></script>
-  <script type="module">
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyDn7GAZJL3717JCLyB4bam01Yo5EE0jPhQ",
-      authDomain: "webpush-e9c3d.firebaseapp.com",
-      projectId: "webpush-e9c3d",
-      storageBucket: "webpush-e9c3d.appspot.com",
-      messagingSenderId: "740768659038",
-      appId: "1:740768659038:web:f2b480c750b8e98035e6cf",
-      measurementId: "G-T65D0NMC7V"
-    };
-
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const messaging = firebase.messaging();
-
-    // 通知を許可するボタンが押された時のアクション
-    const btn = document.getElementById('allow_push_notification');
-    btn.addEventListener("click", function () {
-      if (!("Notification" in window)) { // ブラウザーが通知に対応しているか調べる
-        alert("このブラウザーはデスクトップ通知には対応していません。");
-      } else if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-          .register("./firebase-messaging-sw.js")
-          .then(function (registration) {
-            console.log("Registration successful, scope is:", registration.scope);
-            messaging.getToken({ vapidKey: 'BJ7potPULcKaMJ5s3p4GgkeQXUS-uqa-UBVtJ-a0oc2L_lcBKbTRR2Ie1JKIHUo3q_5RGQ_qizk57WjksAkpra4', serviceWorkerRegistration: registration })
-              .then((currentToken) => {
-                if (currentToken) {
-                  console.log('current token for client: ', currentToken);
-                } else {
-                  console.log('No registration token available. Request permission to generate one.');
-                }
-              }).catch((err) => {
-                console.log('An error occurred while retrieving token. ', err);
-              });
-          })
-          .catch(function (err) {
-            console.log("Service worker registration failed, error:", err);
-          });
-      }
-    });
+  <script src="./main.js">
   </script>
 </body>
 
