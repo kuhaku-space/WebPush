@@ -40,24 +40,32 @@
       if (!("Notification" in window)) { // ブラウザーが通知に対応しているか調べる
         alert("このブラウザーはデスクトップ通知には対応していません。");
       } else if (Notification.permission !== "denied") {
-        //if(Notification.permission !== "denied") {
-        Notification.requestPermission().then((permission) => {
-          const messaging = getMessaging(app);
-          console.log(messaging);
-          // Add the public key generated from the console here.
-          getToken(messaging, { vapidKey: "BJ7potPULcKaMJ5s3p4GgkeQXUS-uqa-UBVtJ-a0oc2L_lcBKbTRR2Ie1JKIHUo3q_5RGQ_qizk57WjksAkpra4" })
-            .then((token) => {
-              if (token) {
-                console.log("token", token);
-                document.getElementById('output').textContent = token;
-              } else {
-                console.log('登録トークンがありません。生成する許可をリクエストします。');
-              }
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker
+            .register("./firebase-messaging-sw.js")
+            .then(function (registration) {
+              console.log("Registration successful, scope is:", registration.scope);
+              messaging.getToken({ vapidKey: 'YOUR_VAPID_KEY', serviceWorkerRegistration: registration })
+                .then((currentToken) => {
+                  if (currentToken) {
+                    console.log('current token for client: ', currentToken);
+
+                    // Track the token -> client mapping, by sending to backend server
+                    // show on the UI that permission is secured
+                  } else {
+                    console.log('No registration token available. Request permission to generate one.');
+
+                    // shows on the UI that permission is required
+                  }
+                }).catch((err) => {
+                  console.log('An error occurred while retrieving token. ', err);
+                  // catch error while creating client token
+                });
             })
-            .catch((err) => {
-              console.log('getToken Error', err);
+            .catch(function (err) {
+              console.log("Service worker registration failed, error:", err);
             });
-        });
+        }
       }
     });
   </script>
