@@ -43,7 +43,7 @@
           .register("./firebase-messaging-sw.js")
           .then(function (registration) {
             console.log("Registration successful, scope is:", registration.scope);
-            firebase.getToken({ vapidKey: 'BJ7potPULcKaMJ5s3p4GgkeQXUS-uqa-UBVtJ-a0oc2L_lcBKbTRR2Ie1JKIHUo3q_5RGQ_qizk57WjksAkpra4', serviceWorkerRegistration: registration })
+            messaging.getToken({ vapidKey: 'BJ7potPULcKaMJ5s3p4GgkeQXUS-uqa-UBVtJ-a0oc2L_lcBKbTRR2Ie1JKIHUo3q_5RGQ_qizk57WjksAkpra4', serviceWorkerRegistration: registration })
               .then((currentToken) => {
                 if (currentToken) {
                   console.log('current token for client: ', currentToken);
