@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getMessaging } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-messaging.js";
+import { getMessaging, onMessage } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-messaging.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
