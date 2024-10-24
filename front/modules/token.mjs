@@ -7,7 +7,7 @@ export function getIDToken(messaging) {
                 .then((currentToken) => {
                     if (currentToken) {
                         console.log('current token for client: ', currentToken);
-                        document.getElementById('output').textContent = token;
+                        document.getElementById('output').textContent = currentToken;
                     } else {
                         console.log('No registration token available. Request permission to generate one.');
                     }
