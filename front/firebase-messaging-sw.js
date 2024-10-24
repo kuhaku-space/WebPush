@@ -1,7 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getMessaging, onMessage } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-messaging.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+importScripts('https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/11.0.1/firebase-messaging.js');
+importScripts('https://www.gstatic.com/firebasejs/11.0.1/init.js');
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -16,9 +15,6 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
 
-const messaging = getMessaging(app);
-onMessage(messaging, (payload) => {
-    console.log('Message received. ', payload);
-});
+const messaging = firebase.getMessaging();
