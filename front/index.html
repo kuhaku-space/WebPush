@@ -32,6 +32,7 @@
 
     // Initialize Firebase
     const app = firebase.initializeApp(firebaseConfig);
+    const messaging = firebase.messaging();
 
     // 通知を許可するボタンが押された時のアクション
     const btn = document.getElementById('allow_push_notification');
