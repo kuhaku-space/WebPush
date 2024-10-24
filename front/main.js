@@ -1,5 +1,5 @@
-import { firebaseConfig } from "./modules/config";
-import { getIDToken } from "./modules/token";
+import { firebaseConfig } from "./modules/config.mjs";
+import { getIDToken } from "./modules/token.mjs";
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
